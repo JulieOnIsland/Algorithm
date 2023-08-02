@@ -9,7 +9,7 @@ package com.practice.makes.perfect;
 
 import java.util.Scanner;
 
-public class 15649_NM1 {
+public class BJ_15649_NM1 {
 
 	static int n, m;
 	static int[] result;
