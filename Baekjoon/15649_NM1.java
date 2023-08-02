@@ -9,7 +9,7 @@ package com.practice.makes.perfect;
 
 import java.util.Scanner;
 
-public class bj_15649 {
+public class 15649_NM1 {
 
 	static int n, m;
 	static int[] result;
@@ -45,10 +45,8 @@ public class bj_15649 {
 			isSelected[i] = true;
 			permutation(x+1);
 			isSelected[i] = false;
-	
 		}
 	}
-
 }
 
 
