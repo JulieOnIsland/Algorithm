@@ -45,12 +45,12 @@ public class BJ_2178_미로탐색 {
 		}
 //		System.out.println(Arrays.deepToString(maze));
 		
-		ans = dfs();
+		ans = bfs();
 		System.out.println(ans);
 		
 	}
 	
-	private static int dfs() {
+	private static int bfs() {
 		Queue<int[]> queue = new ArrayDeque<>();  // 큐에는 row, col, 이동 거리를 담는다
 		int result = 0;
 		
