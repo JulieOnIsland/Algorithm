@@ -7,17 +7,17 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 /**
- * BJ 2146 ´Ù¸®¸¸µé±â
+ * BJ 2146 ë‹¤ë¦¬ë§Œë“¤ê¸°
  * @author leejuhyun
- * µÎ ´ë·úÀ» ¿¬°áÇÏ´Â °¡Àå ÂªÀº ´Ù¸®ÀÇ ±æÀÌ ±¸ÇÏ±â (BFS 2¹ø)
- * Step 1. flood fill ¾Ë°í¸®ÁòÀ¸·Î ¼¶À» Ç¥½ÃÇÏ±â
- * Step 2. 0°ú ºÙ¾î ÀÖ´Â ÁÂÇ¥ Áß¿¡¼­ ´Ù¸¥ ¼¶°ú ¿¬°áµÈ °¡Àå ÂªÀº ±æÀÌ ±¸ÇÏ±â
+ * ë‘ ëŒ€ë¥™ì„ ì—°ê²°í•˜ëŠ” ê°€ì¥ ì§§ì€ ë‹¤ë¦¬ì˜ ê¸¸ì´ êµ¬í•˜ê¸° (BFS 2ë²ˆ)
+ * Step 1. flood fill ì•Œê³ ë¦¬ì¦˜ìœ¼ë¡œ ì„¬ì„ í‘œì‹œí•˜ê¸°
+ * Step 2. 0ê³¼ ë¶™ì–´ ìˆëŠ” ì¢Œí‘œ ì¤‘ì—ì„œ ë‹¤ë¥¸ ì„¬ê³¼ ì—°ê²°ëœ ê°€ì¥ ì§§ì€ ê¸¸ì´ êµ¬í•˜ê¸°
  * 
  * Memory: 79012kb
  * Time: 248ms
  */
 
-public class BJ_2146_´Ù¸®¸¸µé±â {
+public class BJ_2146_ë‹¤ë¦¬ë§Œë“¤ê¸° {
 	
 	static int N, grid[][], length;
 	static int[] dr = {-1, 0, 1, 0};
@@ -39,11 +39,11 @@ public class BJ_2146_´Ù¸®¸¸µé±â {
 //		System.out.println(Arrays.deepToString(grid));
 		visited = new boolean[N][N];
 		
-		// floodfill ¾Ë°í¸®Áò ÀÌ¿ëÇØ¼­ ÀÎÁ¢ÇÑ ´ë·úÀ¸·Î ³ª´©±â
+		// floodfill ì•Œê³ ë¦¬ì¦˜ ì´ìš©í•´ì„œ ì¸ì ‘í•œ ëŒ€ë¥™ìœ¼ë¡œ ë‚˜ëˆ„ê¸°
 		int cnt = 1;
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
-				if (grid[i][j] == 1 && !visited[i][j]) { // 1ÀÌ°í, ¹æ¹®ÇÑ ÀûÀÌ ¾ø´Ù¸é
+				if (grid[i][j] == 1 && !visited[i][j]) { // 1ì´ê³ , ë°©ë¬¸í•œ ì ì´ ì—†ë‹¤ë©´
 					floodfill(i, j, cnt++);
 				}
 			}
@@ -51,14 +51,14 @@ public class BJ_2146_´Ù¸®¸¸µé±â {
 		
 //		print();
 		
-		// ÂªÀº ´Ù¸® ±æÀÌ Ã£±â
-		int num = cnt - 1; // ¼¶ÀÇ °³¼ö
+		// ì§§ì€ ë‹¤ë¦¬ ê¸¸ì´ ì°¾ê¸°
+		int num = cnt - 1; // ì„¬ì˜ ê°œìˆ˜
 		length = Integer.MAX_VALUE;
-		// 0ÀÌ ¾Æ´Ñ ¹øÈ£°¡ ºÙÀº ¼¶ Áß¿¡ ÇÏ³ª, ±×·±µ¥ 0°ú ÇÏ³ª¶óµµ °ãÄ¡´Â ºÎºĞÀÌ ÀÖ¾î¾ß ÇÔ. 
-		// ±×·± ¼¶ Áß¿¡¼­ ±× ¼ıÀÚ°¡ ¾Æ´Ñ ´Ù¸¥ ¼¶µé·ÎÀÇ ÃÖ´Ü °Å¸® ±¸ÇÏ±â 
+		// 0ì´ ì•„ë‹Œ ë²ˆí˜¸ê°€ ë¶™ì€ ì„¬ ì¤‘ì— í•˜ë‚˜, ê·¸ëŸ°ë° 0ê³¼ í•˜ë‚˜ë¼ë„ ê²¹ì¹˜ëŠ” ë¶€ë¶„ì´ ìˆì–´ì•¼ í•¨. 
+		// ê·¸ëŸ° ì„¬ ì¤‘ì—ì„œ ê·¸ ìˆ«ìê°€ ì•„ë‹Œ ë‹¤ë¥¸ ì„¬ë“¤ë¡œì˜ ìµœë‹¨ ê±°ë¦¬ êµ¬í•˜ê¸° 
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
-				if (grid[i][j] != 0 && isAvailable(i, j)) { // 0ÀÌ ¾Æ´Ï°í, ±æÀÌ¸¦ ±¸ÇÒ ¼ö ÀÖ´Â Á¡ÀÇ ÁÂÇ¥¶ó¸é
+				if (grid[i][j] != 0 && isAvailable(i, j)) { // 0ì´ ì•„ë‹ˆê³ , ê¸¸ì´ë¥¼ êµ¬í•  ìˆ˜ ìˆëŠ” ì ì˜ ì¢Œí‘œë¼ë©´
 					visited = new boolean[N][N];
 					bfsLength(i, j, grid[i][j]);
 				}
@@ -83,11 +83,11 @@ public class BJ_2146_´Ù¸®¸¸µé±â {
 				int nr = cr + dr[d];
 				int nc = cc + dc[d]; 
 				if (check(nr, nc) && grid[nr][nc] != value && !visited[nr][nc]) { 
-					// ¹üÀ§ ¾È¿¡ µé¾î°¡°í, value°¡ ¾Æ´Ï¸é¼­, ÇÑ ¹øµµ ¹æ¹®ÇÑ ÀûÀÌ ¾ø´Ù¸é
-					if (grid[nr][nc] == 0) { // ´Ù¸®ÀÌ¸é
-						q.offer(new int[] {nr, nc, len+1}); // Å¥¿¡ ³Ö°í
-						visited[nr][nc] = true; // ¹æ¹®Ã³¸®
-					} else { // ´Ù¸¥ ¼¶ÀÌ¶ó¸é
+					// ë²”ìœ„ ì•ˆì— ë“¤ì–´ê°€ê³ , valueê°€ ì•„ë‹ˆë©´ì„œ, í•œ ë²ˆë„ ë°©ë¬¸í•œ ì ì´ ì—†ë‹¤ë©´
+					if (grid[nr][nc] == 0) { // ë‹¤ë¦¬ì´ë©´
+						q.offer(new int[] {nr, nc, len+1}); // íì— ë„£ê³ 
+						visited[nr][nc] = true; // ë°©ë¬¸ì²˜ë¦¬
+					} else { // ë‹¤ë¥¸ ì„¬ì´ë¼ë©´
 						if (length > len) length = len;
 						return;
 					}
@@ -98,11 +98,11 @@ public class BJ_2146_´Ù¸®¸¸µé±â {
 
 	}
 	
-	private static boolean isAvailable(int r, int c) { // ±æÀÌ¸¦ ±¸ÇÒ ¼ö ÀÖ´Â°¡
+	private static boolean isAvailable(int r, int c) { // ê¸¸ì´ë¥¼ êµ¬í•  ìˆ˜ ìˆëŠ”ê°€
 		for (int d = 0; d < 4; d++) {
 			int nr = r + dr[d];
 			int nc = c + dc[d];
-			if (check(nr, nc) && grid[nr][nc] == 0) { // ¹üÀ§ ¾È¿¡ µé¾î°¡¸é¼­ 0°ú ÇÏ³ª¶óµµ °ãÄ¡´Â ºÎºĞÀÌ ÀÖ´Ù¸é
+			if (check(nr, nc) && grid[nr][nc] == 0) { // ë²”ìœ„ ì•ˆì— ë“¤ì–´ê°€ë©´ì„œ 0ê³¼ í•˜ë‚˜ë¼ë„ ê²¹ì¹˜ëŠ” ë¶€ë¶„ì´ ìˆë‹¤ë©´
 				return true;
 			}
 		}
@@ -123,10 +123,10 @@ public class BJ_2146_´Ù¸®¸¸µé±â {
 			for (int d = 0; d < 4; d++) {
 				int nr = cr + dr[d]; // next row
 				int nc = cc + dc[d]; // next col
-				if (check(nr, nc) && grid[nr][nc]==1 && !visited[nr][nc]) { // ¹üÀ§¿¡ µé¾î°¡°í, 1ÀÌ¸é¼­ ¹æ¹®ÇÏÁö ¾Ê¾Ò´Ù¸é			
-					q.offer(new int[] {nr, nc}); // Å¥¿¡ ³Ö°í
-					visited[nr][nc] = true; // ¹æ¹®Ã³¸®
-					grid[nr][nc] = fill; // °ª ¹Ù²Ù±â
+				if (check(nr, nc) && grid[nr][nc]==1 && !visited[nr][nc]) { // ë²”ìœ„ì— ë“¤ì–´ê°€ê³ , 1ì´ë©´ì„œ ë°©ë¬¸í•˜ì§€ ì•Šì•˜ë‹¤ë©´			
+					q.offer(new int[] {nr, nc}); // íì— ë„£ê³ 
+					visited[nr][nc] = true; // ë°©ë¬¸ì²˜ë¦¬
+					grid[nr][nc] = fill; // ê°’ ë°”ê¾¸ê¸°
 				}
 			}
 		}
@@ -149,22 +149,3 @@ public class BJ_2146_´Ù¸®¸¸µé±â {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
