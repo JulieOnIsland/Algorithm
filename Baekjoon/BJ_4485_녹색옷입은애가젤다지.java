@@ -7,14 +7,16 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 /**
- * BJ 4485 ³ì»ö¿ÊÀÔÀº¾Ö°¡Á©´ÙÁö
+ * BJ 4485 ë…¹ìƒ‰ì˜·ì…ì€ì• ê°€ì ¤ë‹¤ì§€
  * @author leejuhyun
- * ¹®Á¦: ÀÒ´Â ±İ¾×À» ÃÖ¼Ò·Î ÇÏ¿© µ¿±¼ °Ç³ÊÆí±îÁö ÀÌµ¿ÇÏ´Âµ¥ ¸µÅ©°¡ ÀÒÀ» ¼ö ÀÖ´Â ÃÖ¼Ò ±İ¾× ±¸ÇÏ±â.
+ * ë¬¸ì œ: ìƒëŠ” ê¸ˆì•¡ì„ ìµœì†Œë¡œ í•˜ì—¬ ë™êµ´ ê±´ë„ˆí¸ê¹Œì§€ ì´ë™í•˜ëŠ”ë° ë§í¬ê°€ ìƒì„ ìˆ˜ ìˆëŠ” ìµœì†Œ ê¸ˆì•¡ êµ¬í•˜ê¸°.
+ * visited ë°°ì—´ì„ booleanì´ ì•„ë‹Œ intí˜•ìœ¼ë¡œ ì €ì¥í•˜ëŠ” ê²Œ ìƒˆë¡œì› ìŒ.
+ * BFS, DFS, DP ì¤‘ì— ê³ ë¯¼ì„ í–ˆìŒ.
  * 
  * Memory: 275192kb
  * Time: 780ms
  */
-public class BJ_4485_³ì»ö¿ÊÀÔÀº¾Ö°¡Á©´ÙÁö {
+public class BJ_4485_ë…¹ìƒ‰ì˜·ì…ì€ì• ê°€ì ¤ë‹¤ì§€ {
 	
 	static int N, grid[][], answer;
 	static int visited[][];
@@ -29,16 +31,16 @@ public class BJ_4485_³ì»ö¿ÊÀÔÀº¾Ö°¡Á©´ÙÁö {
 		while (true) { 
 			st = new StringTokenizer(br.readLine());
 			N = Integer.parseInt(st.nextToken());
-			if (N == 0) break; // Á¾·á
+			if (N == 0) break; // ì¢…ë£Œ
 			grid = new int[N][N];
 			visited = new int[N][N];
-			//visited ¹è¿­ ¸¸µé±â
+			//visited ë°°ì—´ ë§Œë“¤ê¸°
 			for (int i = 0; i < grid.length; i++) {
 				for (int j = 0; j < grid.length; j++) {
 					visited[i][j] = 1000;
 				}
 			}
-			// grid ¹è¿­ ¸¸µé±â
+			// grid ë°°ì—´ ë§Œë“¤ê¸°
 			answer = Integer.MAX_VALUE;
 			for (int i = 0; i < grid.length; i++) {
 				st = new StringTokenizer(br.readLine());
@@ -70,10 +72,10 @@ public class BJ_4485_³ì»ö¿ÊÀÔÀº¾Ö°¡Á©´ÙÁö {
 				int nr = cr + dr[d];
 				int nc = cc + dc[d];
 				
-				if (check(nr, nc)) { // ¹üÀ§¿¡ µé¾î°¡°í
-					if (visited[nr][nc] > value+grid[nr][nc]) { // visited ¹è¿­¿¡¼­º¸´Ù value+grid[nr][nc] °ªÀÌ ÀÛÀ¸¸é
-						visited[nr][nc] = value+grid[nr][nc]; // ÃÖ¼Ú°ª °»½Å
-						q.offer(new int[] {nr, nc, value+grid[nr][nc]}); // Å¥¿¡ ³Ö±â
+				if (check(nr, nc)) { // ë²”ìœ„ì— ë“¤ì–´ê°€ê³ 
+					if (visited[nr][nc] > value+grid[nr][nc]) { // visited ë°°ì—´ì—ì„œë³´ë‹¤ value+grid[nr][nc] ê°’ì´ ì‘ìœ¼ë©´
+						visited[nr][nc] = value+grid[nr][nc]; // ìµœì†Ÿê°’ ê°±ì‹ 
+						q.offer(new int[] {nr, nc, value+grid[nr][nc]}); // íì— ë„£ê¸°
 					}
 
 				}
