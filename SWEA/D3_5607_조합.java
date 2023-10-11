@@ -9,7 +9,9 @@ import java.util.StringTokenizer;
  * 
  * N Combination R을 1234567891로 나눈 나머지 출력하기
  * Fermat Little Theorem
- *
+ * 
+ * Memory: 77,160kb
+ * Time: 428ms
  */
 public class D3_5607_조합 {
 
